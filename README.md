@@ -55,3 +55,4 @@ We are using the following internal measures to compare our clustering approache
 In our results we hope that our supervised model can correctly identify the class of each painting. We expect that the unsupervised clustering approach will shed interesting insights on the correlation between the style and work of different artists spanning different periods and geographies.
 
 ## Team Members
+Anisha Pal, Avinash Prabhu, Meher Shashwat Nigam, Mukul Khanna, Shivika Singh
