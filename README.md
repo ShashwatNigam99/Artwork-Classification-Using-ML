@@ -20,6 +20,52 @@
 | [Classifying digitized art type and time period](https://www.jevinwest.org/papers/Yang2018KDDart.pdf)                                                | 300k images from: Metropolitan Museum of Art, WikiArt and Artsy                                     | CNN                     | Type, Time period     | Accuracy for type: 87%, for time: 57%                           | 2018      |
 | [The Effect of Derived Features on Art Genre Classification with Machine Learning](http://www.saujs.sakarya.edu.tr/en/download/article-file/1668894) | [50 Most Influential Artists ](https://www.kaggle.com/datasets/ikarus777/best-artworks-of-all-time) | Random Forest           | Genre            | F1 score: 82%                                                   | 2021      |
 
+## Dataset
+Dataset of ~30k images from [WikiArt](wikiart.org) along with metadata like:
+- Genre
+- Artist
+- Year
+- Location
+  
+<details>
+<summary>Click here to see a sample datapoint!</summary>
+<pre>
+{
+        "title": "Picador",
+        "contentId": 224238,
+        "artistContentId": 223667,
+        "artistName": "Picasso Pablo",
+        "completitionYear": 1900,
+        "yearAsString": "1900",
+        "width": 810,
+        "image": "https://uploads6.wikiart.org/images/pablo-picasso/picador-1900.jpg!Large.jpg",
+        "height": 1280,
+        "artistUrl": "pablo-picasso",
+        "url": "picador-1900",
+        "dictionaries": [
+            417,
+            502
+        ],
+        "location": null,
+        "period": "Early Years",
+        "serie": null,
+        "genre": "genre painting",
+        "material": null,
+        "style": "Expressionism",
+        "technique": null,
+        "sizeX": 13.5,
+        "sizeY": 21.0,
+        "diameter": null,
+        "auction": null,
+        "yearOfTrade": null,
+        "lastPrice": null,
+        "galleryName": "Museum of Montserrat, Barcelona, Spain",
+        "tags": "animals, horses, horsemen, hunting-and-racing, bulls, Fiction",
+        "description": null
+    }
+</pre>
+</details>
+  
 ## Methods
 We employ both supervised and unsupervised methods for this project. 
 ### Supervised classification:
