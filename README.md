@@ -4,8 +4,8 @@
 ## Introduction
 - Since the advent of digitalization, millions of artworks have been digitized, opening up the world of art to countless new people. However, navigating this space for a layman is difficult due to the lack of metadata and contextual information needed to describe and understand the artwork. 
 - Unless one knows title and artist of an artwork, finding the artwork is almost impossible. In this research project, we use both supervised and unsupervised models to generate metadata given an image of an artwork. 
-- Specifically, we will try to predict the artist name, genre, style, completion year, location of the artwork, and the time period. 
-- We have collected dataset of ~30k images from wikiart.org along with their above mentioned metadata.
+- Specifically, given an artwork, we will try to predict the genre, time period, geography and the artist. 
+- We have collected dataset of ~30k images from [WikiArt](wikiart.org) along with their above mentioned metadata.
 
 ## Problem Definition
 1. *Throughout history it has been observed that artistic collaborations fuel creativity and give rise to art movements.* Our study aims to find correlations between different artistic styles spanning geographies and periods, which would help track the journey of art and how it evolved. Soft clustering approaches can help deduce influence of different factors (genre, time period, geography) on a particular work of art. Studying similarity and influence across time and geography between different art styles is a relevant research area.
@@ -53,3 +53,5 @@ We are using the following internal measures to compare our clustering approache
 3. Beta-CV Measure 
 
 In our results we hope that our supervised model can correctly identify the class of each painting. We expect that the unsupervised clustering approach will shed interesting insights on the correlation between the style and work of different artists spanning different periods and geographies.
+
+## Team Members
