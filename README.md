@@ -1,6 +1,6 @@
 # ArtyLyze
 
-<embed width="560" height="315" src="https://www.youtube.com/embed/J0ZKjrVC2QY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+<embed width="800" height="500" src="https://www.youtube.com/embed/J0ZKjrVC2QY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 
 ## Introduction
 - Since the advent of digitalization, millions of artworks have been digitized, opening up the world of art to countless new people. However, navigating this space for a layman is difficult due to the lack of metadata and contextual information needed to describe and understand the artwork. 
