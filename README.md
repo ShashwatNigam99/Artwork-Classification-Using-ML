@@ -1,5 +1,6 @@
 # ArtyLyze
-![cover](https://user-images.githubusercontent.com/30972206/194464894-9d62315c-a117-4bab-8a67-a149fac6448f.jpg)
+
+<embed width="560" height="315" src="https://www.youtube.com/embed/J0ZKjrVC2QY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 
 ## Introduction
 - Since the advent of digitalization, millions of artworks have been digitized, opening up the world of art to countless new people. However, navigating this space for a layman is difficult due to the lack of metadata and contextual information needed to describe and understand the artwork. 
@@ -68,6 +69,8 @@ Dataset of ~30k images from [WikiArt](wikiart.org) along with metadata like:
   
 ## Methods
 We employ both supervised and unsupervised methods for this project. 
+![Screenshot from 2022-10-07 13-09-51](https://user-images.githubusercontent.com/30972206/194612955-212975aa-be7a-45f0-a484-7b8f802b42c9.png)
+![Screenshot from 2022-10-07 13-11-01](https://user-images.githubusercontent.com/30972206/194613037-52806952-4c98-4d47-989f-5bd84f4f023b.png)
 ### Supervised classification:
 - Convolutional Neural Network
 ### Unsupervised classification: 
@@ -102,3 +105,39 @@ In our results we hope that our supervised model can correctly identify the clas
 
 ## Team Members
 Anisha Pal, Avinash Prabhu, Meher Shashwat Nigam, Mukul Khanna, Shivika Singh
+
+## References
+```
+@misc{saleh2015largescale,
+      title={Large-scale Classification of Fine-Art Paintings: Learning The Right Metric on The Right Feature}, 
+      author={Babak Saleh and Ahmed Elgammal},
+      year={2015},
+      eprint={1505.00855},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+@article{10.1371/journal.pone.0248414,
+    doi = {10.1371/journal.pone.0248414},
+    author = {Zhao, Wentao AND Zhou, Dalin AND Qiu, Xinguo AND Jiang, Wei},
+    journal = {PLOS ONE},
+    publisher = {Public Library of Science},
+    title = {Compare the performance of the models in art classification},
+    year = {2021},
+    month = {03},
+    volume = {16},
+    url = {https://doi.org/10.1371/journal.pone.0248414},
+    pages = {1-16},
+}
+@article{ saufenbilder904964, 
+    journal = {Sakarya University Journal of Science},
+    year = {2021}, volume = {25}, number = {6}, pages = {1275 - 1286}, 
+    doi = {10.16984/saufenbilder.904964}, 
+    title = {The Effect of Derived Features on Art Genre Classification with Machine Learning}, 
+    author = {Abidin, Didem} 
+}
+@inproceedings{Yang2018ClassifyingDA,
+  title={Classifying digitized art type and time period},
+  author={Sean T. Yang and Bum Mook Oh},
+  year={2018}
+}
+```
