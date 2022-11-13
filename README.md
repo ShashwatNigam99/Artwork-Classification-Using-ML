@@ -35,12 +35,13 @@ With our future updates we plan on tackling this data imbalance issue better to 
 *Dataset with images and corresponding labels*
 
 ### Dataset Preprocessing 
-- Unsupervised Classification 
+- Unsupervised Classification\
+
 For our unsupervised classification we need feature embeddings of each image. Since CNNs are very good automatic feature extractors we use a [MobileNet](https://arxiv.org/abs/1704.04861) model to extract features by saving the feature map obtained from the fully connected layer of the model. This gives us a dataset with a dimensionality of 1000 since the model outputs a feature map of 1000 features. We further used PCA for dimensionality reduction and reduced our feature space to 100 which captures 85% of the variance of our original data. \
 ![PCA](./images/PCA.jpeg)\
 *Plot showing the variance represented by features in the data*
 
-- Supervised Classification
+- Supervised Classification\
 Since we want our model to generalize well and focus on important underlying features for style prediction we perform a few simple data augmentation practices like flipping and rotation along the vertical axis. \
 ![Data-Aug](./images/Aug.png#center )\
 *Data Augmentation*
@@ -106,6 +107,7 @@ Further experiments are performed by fine-tuning the MobileNet backbone with our
 *Classification results on images*
 
 ### Unsupervised 
+
 For our unsupervised algorithms feature selection and distance function are very important measures. Our features should be representative our data and what we want the model to capture. Every clustering algorithm uses a different distance function, it is important to understand whether the distance function is a good measure to calculate the similarities between datapoints in the given dataset.  
 In our project we used silhouette coefficient and davies bouldin index to measure the performance of our clustering algorithms. 
 
