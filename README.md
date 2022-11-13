@@ -31,18 +31,18 @@ Our filtered dataset exhibited a class imbalance issue, hence we selected only t
 
 This balanced dataset contains a total of 2556 samples which are split into training and validation set of 1908 and 648 respectively. 
 With our future updates we plan on tackling this data imbalance issue better to incorporate more classes by using a combination of data based, loss weighting and metric weighting based methods. \
-![Dataset](./images/Filtered.png)\
+![Dataset](./images/Filtered.png#center)\
 *Dataset with images and corresponding labels*
 
 ### Dataset Preprocessing 
 - Unsupervised Classification 
 For our unsupervised classification we need feature embeddings of each image. Since CNNs are very good automatic feature extractors we use a [MobileNet](https://arxiv.org/abs/1704.04861) model to extract features by saving the feature map obtained from the fully connected layer of the model. This gives us a dataset with a dimensionality of 1000 since the model outputs a feature map of 1000 features. We further used PCA for dimensionality reduction and reduced our feature space to 100 which captures 85% of the variance of our original data. \
-![PCA](./images/PCA.jpeg )\
+![PCA](./images/PCA.jpeg#center)\
 *Plot showing the variance represented by features in the data*
 
 - Supervised Classification
 Since we want our model to generalize well and focus on important underlying features for style prediction we perform a few simple data augmentation practices like flipping and rotation along the vertical axis. \
-![Data-Aug](./images/Aug.png )\
+![Data-Aug](./images/Aug.png#center )\
 *Data Augmentation*
  
 Each image in our dataset is an RGB image of size 180x180x3 where where 180 is the height and width of the image and 3 is the number of channels. The RGB channel values are in the [0, 255] range. This is not ideal for a neural network; in general we should seek to make our input values small. Hence, we standardize values to be in the [0, 1] range. 
@@ -54,7 +54,7 @@ We employ both supervised and unsupervised methods for this project.
 ### Supervised classification:
 For supervised classification we use Convolutional Neural Networks, to understand if CNNs are able to capture the information, we experimented with a basic neural network with 3 convolutional layers and dropout. As expected the model was unable to perform well and produced very noisy results. \
 
-![Conv](./images/Conv3.png)\
+![Conv](./images/Conv3.png#center)\
 *Accuracy and Loss curves for 3 layer CNN*
 
 
