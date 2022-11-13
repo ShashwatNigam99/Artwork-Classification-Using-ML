@@ -38,8 +38,7 @@ With our future updates we plan on tackling this data imbalance issue better to 
 ### Dataset Preprocessing 
 - Unsupervised Classification 
 For our unsupervised classification we need feature embeddings of each image. Since CNNs are very good automatic feature extractors we use a [MobileNet](https://arxiv.org/abs/1704.04861) model to extract features by saving the feature map obtained from the fully connected layer of the model. This gives us a dataset with a dimensionality of 1000 since the model outputs a feature map of 1000 features. We further used PCA for dimensionality reduction and reduced our feature space to 100 which captures 85% of the variance of our original data. \
-&nbsp;
-![PCA](./images/PCA.jpeg )\
+![PCA](./images/PCA.jpeg ){:style="display:block; margin-left:auto; margin-right:auto"}\
 *Plot showing the variance represented by features in the data*
 
 - Supervised Classification
