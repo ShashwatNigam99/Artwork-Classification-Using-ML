@@ -79,7 +79,16 @@ KMeans performs hard clustering hence it is difficult to understand if a particu
 We compared the performance of our supervised models using accuracy, f1, precision and recall score.  
 
 It can be clearly observed that a 3 layer CNN is extremely noisy and unable to learn well, its capacity of learning is lower. The MobileNet model performed significantly better than the convolution model with better values across all the metrics. To improve its performance we experimented with different learning rates and obtained the following results. Based on these results we obtained at the optimum learning rate of 1e-4. 
-![lr1e-4]
+
+| Model | Accuracy | Precision | Recall | F1 |
+| --- | --- | --- | --- | --- |
+| 3 layer CNN | 0.42| 0.47|0.42 |0.40 |
+| Mobilenet backbone (frozen); LR = 1e-4| 0.57 | 0.59 | 0.57 | 0.57 |
+| Mobilenet backbone (frozen); LR = 5e-4 | 0.54| 0.54| 0.54 | 0.53 |
+| Mobilenet backbone (frozen); LR = 1e-3 | 0.44 | 0.68 | 0.44 | 0.44 |
+| Mobilenet backbone (fine-tuning)| 0.65 | 0.66 | 0.65 | 0.65 |
+
+
 Further experiments are performed by fine-tuning the MobileNet backbone with our datatset. The results clearly show that fine-tuning yields significantly better results. 
 
 ![Images](./images/Results.png "Classification results on images")
