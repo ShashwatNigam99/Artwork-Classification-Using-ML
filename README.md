@@ -38,9 +38,13 @@ With our future updates we plan on tackling this data imbalance issue better to 
 For our unsupervised classification we need feature embeddings of each image. Since CNNs are very good automatic feature extractors we use a mobilent model to extract features by saving the feature map obtained from the fully connected layer of the model. This gives us a dataset with a dimensionality of 1000 since the model outputs a feature map of 1000 features. We further used PCA for dimensionality reduction and reduced our feature space to 100 which captures 85% of the variance of our original data. 
 ![PCA](./images/PCA.jpeg "Plot showing the variance represented by features in the data")
 
--Supervised Classification
+- Supervised Classification
 Since we want our model to generalize well and focus on important underlying features for style prediction we perform a few simple data augmentation practices like flipping and rotation along the vertical axis. 
 ![Data-Aug](./images/Aug.png "Data Augmentation")
+ 
+Each image in our dataset is an RGB image of size 180x180x3 where where 180 is the height and width of the image and 3 is the number of channels. The RGB channel values are in the [0, 255] range. This is not ideal for a neural network; in general we should seek to make our input values small. Hence, we standardize values to be in the [0, 1] range. 
+
+The final input to our model is a tensor of size (32, 180, 180, 3) where 32 is the batchsize. 
  
 ## Methods
 We employ both supervised and unsupervised methods for this project. 
