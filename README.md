@@ -58,7 +58,7 @@ For supervised classification we use Convolutional Neural Networks, to understan
 *Accuracy and Loss curves for 3 layer CNN*
 
 
-Since our aim is to also achieve good results with good computational efficiency we decided to use the MobileNet architecture to build our prediction pipeline. Another reason for going with MobileNet being given its computational efficiency it will lead to faster experimentations which helps us better engineer the other parts of our pipeline like loss, optimizers, hyperparameters.\
+Since our aim is to also achieve good results with good computational efficiency we decided to use the MobileNet architecture to build our prediction pipeline. Another reason for going with MobileNet being given its computational efficiency it will lead to faster experimentations which helps us better engineer the other parts of our pipeline like loss, optimizers, hyperparameters. \
 
 ![MobileNet](./images/MobileNet.png)\
 *MobileNet Architecture*
@@ -100,7 +100,7 @@ It can be clearly observed that a 3 layer CNN is extremely noisy and unable to l
 | Mobilenet backbone (fine-tuning)| 0.65 | 0.66 | 0.65 | 0.65 |
 
 
-Further experiments are performed by fine-tuning the MobileNet backbone with our datatset. The results clearly show that fine-tuning yields significantly better results.\
+Further experiments are performed by fine-tuning the MobileNet backbone with our datatset. The results clearly show that fine-tuning yields significantly better results. \
 
 ![Images](./images/Results.png)\
 *Classification results on images*
