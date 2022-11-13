@@ -28,19 +28,23 @@ The final filtered subset has a total of 12,619 images split into train and test
 
 ### Dataset Cleaning
 Our filtered dataset exhibited a class imbalance issue, hence we selected only the top 12 classes with highest represnetation and undersampled them to balance the dataset. 
-![Imbalance](./images/Imbalance.png "Plot displaying the count of images in each class")
+![Imbalance](./images/Imbalance.png)
+*Plot displaying the count of images in each class*
 This balanced dataset contains a total of 2556 samples which are split into training and validation set of 1908 and 648 respectively. 
-With our future updates we plan on tackling this data imbalance issue better to incorporate more classes by using a combination of data based, loss weighting and metric weighting based methods. 
-![Dataset](./images/Filtered.png "Dataset with images and corresponding labels")
+With our future updates we plan on tackling this data imbalance issue better to incorporate more classes by using a combination of data based, loss weighting and metric weighting based methods. \
+![Dataset](./images/Filtered.png)\
+*Dataset with images and corresponding labels*\
 
 ### Dataset Preprocessing 
 - Unsupervised Classification 
-For our unsupervised classification we need feature embeddings of each image. Since CNNs are very good automatic feature extractors we use a mobilent model to extract features by saving the feature map obtained from the fully connected layer of the model. This gives us a dataset with a dimensionality of 1000 since the model outputs a feature map of 1000 features. We further used PCA for dimensionality reduction and reduced our feature space to 100 which captures 85% of the variance of our original data. 
-![PCA](./images/PCA.jpeg "Plot showing the variance represented by features in the data")
+For our unsupervised classification we need feature embeddings of each image. Since CNNs are very good automatic feature extractors we use a [MobileNet](https://arxiv.org/abs/1704.04861) model to extract features by saving the feature map obtained from the fully connected layer of the model. This gives us a dataset with a dimensionality of 1000 since the model outputs a feature map of 1000 features. We further used PCA for dimensionality reduction and reduced our feature space to 100 which captures 85% of the variance of our original data. \
+![PCA](./images/PCA.jpeg )\
+*Plot showing the variance represented by features in the data*\
 
 - Supervised Classification
-Since we want our model to generalize well and focus on important underlying features for style prediction we perform a few simple data augmentation practices like flipping and rotation along the vertical axis. 
-![Data-Aug](./images/Aug.png "Data Augmentation")
+Since we want our model to generalize well and focus on important underlying features for style prediction we perform a few simple data augmentation practices like flipping and rotation along the vertical axis. \
+![Data-Aug](./images/Aug.png )\
+*Data Augmentation*\
  
 Each image in our dataset is an RGB image of size 180x180x3 where where 180 is the height and width of the image and 3 is the number of channels. The RGB channel values are in the [0, 255] range. This is not ideal for a neural network; in general we should seek to make our input values small. Hence, we standardize values to be in the [0, 1] range. 
 
@@ -49,24 +53,28 @@ The final input to our model is a tensor of size (32, 180, 180, 3) where 32 is t
 ## Methods
 We employ both supervised and unsupervised methods for this project. 
 ### Supervised classification:
-For supervised classification we use Convolutional Neural Networks, to understand if CNNs are able to capture the information, we experimented with a basic neural network with 3 convolutional layers and dropout. As expected the model was unable to perform well and produced very noisy results. 
+For supervised classification we use Convolutional Neural Networks, to understand if CNNs are able to capture the information, we experimented with a basic neural network with 3 convolutional layers and dropout. As expected the model was unable to perform well and produced very noisy results. \
 
-![Conv](./images/Conv3.png "Accuracy and Loss curves for 3 layer CNN")
+![Conv](./images/Conv3.png)\
+*Accuracy and Loss curves for 3 layer CNN*\
 
 
-Since our aim is to also achieve good results with good computational efficiency we decided to use the MobileNet architecture to build our prediction pipeline. Another reason for going with MobileNet being given its computational efficiency it will lead to faster experimentations which helps us better engineer the other parts of our pipeline like loss, optimizers, hyperparameters.
+Since our aim is to also achieve good results with good computational efficiency we decided to use the MobileNet architecture to build our prediction pipeline. Another reason for going with MobileNet being given its computational efficiency it will lead to faster experimentations which helps us better engineer the other parts of our pipeline like loss, optimizers, hyperparameters.\
 
-![MobileNet](./images/MobileNet.png "MobileNet Architecture")
+![MobileNet](./images/MobileNet.png)\
+*MobileNet Architecture*\
 
 We further performed hyperparameter tuning to arrive at the learning rate of 1e-4 as a good approximation for the optimum value. 
-In our first few experiments with MobileNet we froze the backbone which gave us consistent results across both training and validation sets. 
+In our first few experiments with MobileNet we froze the backbone which gave us consistent results across both training and validation sets. \
 
-![Mobilefreeze](./images/Mobile-1e-4.png " Results on MobileNet with frozen backbone")
+![Mobilefreeze](./images/Mobile-1e-4.png )\
+*Results on MobileNet with frozen backbone*\
 
 
-To improve performance we fine-tuned the MobileNet backbone with our dataset which boosted our accuracy on the testing set. 
+To improve performance we fine-tuned the MobileNet backbone with our dataset which boosted our accuracy on the testing set. \
 
-![Mobilefine](./images/Mobile-fine.png "Results on MobileNet with fine-tuned backbone")
+![Mobilefine](./images/Mobile-fine.png)\
+*Results on MobileNet with fine-tuned backbone*\
 
 
 ![Conv]
@@ -82,20 +90,21 @@ KMeans performs hard clustering hence it is difficult to understand if a particu
 ### Supervised 
 We compared the performance of our supervised models using accuracy, f1, precision and recall score.  
 
-It can be clearly observed that a 3 layer CNN is extremely noisy and unable to learn well, its capacity of learning is lower. The MobileNet model performed significantly better than the convolution model with better values across all the metrics. To improve its performance we experimented with different learning rates and obtained the following results. Based on these results we obtained at the optimum learning rate of 1e-4. 
+It can be clearly observed that a 3 layer CNN is extremely noisy and unable to learn well, its capacity of learning is lower. The MobileNet model performed significantly better than the convolution model with better values across all the metrics. To improve its performance we experimented with different learning rates and obtained the following results. Based on these results we obtained at the optimum learning rate of 1e-4. \
 
 | Model | Accuracy | Precision | Recall | F1 |
 | --- | --- | --- | --- | --- |
 | 3 layer CNN | 0.42| 0.47|0.42 |0.40 |
-| Mobilenet backbone (frozen); LR = 1e-4| 0.57 | 0.59 | 0.57 | 0.57 |
-| Mobilenet backbone (frozen); LR = 5e-4 | 0.54| 0.54| 0.54 | 0.53 |
-| Mobilenet backbone (frozen); LR = 1e-3 | 0.44 | 0.68 | 0.44 | 0.44 |
+| Mobilenet backbone (frozen); LR = 1e-4| 0.57 | 0.59 | 0.57 | 0.58 |
+| Mobilenet backbone (frozen); LR = 5e-4 | 0.54| 0.54| 0.54 | 0.54 |
+| Mobilenet backbone (frozen); LR = 1e-3 | 0.44 | 0.68 | 0.44 | 0.53 |
 | Mobilenet backbone (fine-tuning)| 0.65 | 0.66 | 0.65 | 0.65 |
 
 
-Further experiments are performed by fine-tuning the MobileNet backbone with our datatset. The results clearly show that fine-tuning yields significantly better results. 
+Further experiments are performed by fine-tuning the MobileNet backbone with our datatset. The results clearly show that fine-tuning yields significantly better results. \
 
-![Images](./images/Results.png "Classification results on images")
+![Images](./images/Results.png)\
+*Classification results on images*\
 
 ### Unsupervised 
 For our unsupervised algorithms feature selection and distance function are very important measures. Our features should be representative our data and what we want the model to capture. Every clustering algorithm uses a different distance function, it is important to understand whether the distance function is a good measure to calculate the similarities between datapoints in the given dataset.  
@@ -111,7 +120,7 @@ Anisha Pal, Avinash Prabhu, Meher Shashwat Nigam, Mukul Khanna, Shivika Singh
 ### Work Distribution
 [Link to Gantt Chart](https://docs.google.com/spreadsheets/d/1LRcJbVBx7WDqoV-0qWDu1E3mkWw_PsMho9b2ql4kQBE/edit?usp=sharing)
 
-## References
+<!-- ## References
 ```
 @misc{saleh2015largescale,
       title={Large-scale Classification of Fine-Art Paintings: Learning The Right Metric on The Right Feature}, 
@@ -145,4 +154,4 @@ Anisha Pal, Avinash Prabhu, Meher Shashwat Nigam, Mukul Khanna, Shivika Singh
   author={Sean T. Yang and Bum Mook Oh},
   year={2018}
 }
-```
+``` -->
