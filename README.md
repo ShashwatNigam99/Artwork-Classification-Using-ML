@@ -64,13 +64,13 @@ Since our aim is to also achieve good results with good computational efficiency
 *MobileNet Architecture*
 
 We further performed hyperparameter tuning to arrive at the learning rate of 1e-4 as a good approximation for the optimum value. 
-In our first few experiments with MobileNet we froze the backbone which gave us consistent results across both training and validation sets. \
+In our first few experiments with MobileNet we froze the backbone which gave us consistent results across both training and validation sets.\
 
 ![Mobilefreeze](./images/Mobile-1e-4.png )\
 *Results on MobileNet with frozen backbone*
 
 
-To improve performance we fine-tuned the MobileNet backbone with our dataset which boosted our accuracy on the testing set. \
+To improve performance we fine-tuned the MobileNet backbone with our dataset which boosted our accuracy on the testing set.\
 
 ![Mobilefine](./images/Mobile-fine.png)\
 *Results on MobileNet with fine-tuned backbone*
@@ -89,7 +89,7 @@ KMeans performs hard clustering hence it is difficult to understand if a particu
 ### Supervised 
 We compared the performance of our supervised models using accuracy, f1, precision and recall score.  
 
-It can be clearly observed that a 3 layer CNN is extremely noisy and unable to learn well, its capacity of learning is lower. The MobileNet model performed significantly better than the convolution model with better values across all the metrics. To improve its performance we experimented with different learning rates and obtained the following results. Based on these results we obtained at the optimum learning rate of 1e-4. \
+It can be clearly observed that a 3 layer CNN is extremely noisy and unable to learn well, its capacity of learning is lower. The MobileNet model performed significantly better than the convolution model with better values across all the metrics. To improve its performance we experimented with different learning rates and obtained the following results. Based on these results we obtained at the optimum learning rate of 1e-4.\
 
 | Model | Accuracy | Precision | Recall | F1 |
 | --- | --- | --- | --- | --- |
@@ -100,7 +100,7 @@ It can be clearly observed that a 3 layer CNN is extremely noisy and unable to l
 | Mobilenet backbone (fine-tuning)| 0.65 | 0.66 | 0.65 | 0.65 |
 
 
-Further experiments are performed by fine-tuning the MobileNet backbone with our datatset. The results clearly show that fine-tuning yields significantly better results. \
+Further experiments are performed by fine-tuning the MobileNet backbone with our datatset. The results clearly show that fine-tuning yields significantly better results.\
 
 ![Images](./images/Results.png)\
 *Classification results on images*
