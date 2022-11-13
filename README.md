@@ -26,7 +26,7 @@ The final filtered subset has a total of 12,619 images split into train and test
 
 ### Dataset Cleaning
 Our filtered dataset exhibited a class imbalance issue, hence we selected only the top 12 classes with highest represnetation and undersampled them to balance the dataset. \
-![Imbalance](./images/Imbalance.png)\
+![Imbalance](./images/Imbalance.png#center)\
 *Plot displaying the count of images in each class*
 
 This balanced dataset contains a total of 2556 samples which are split into training and validation set of 1908 and 648 respectively. 
@@ -42,10 +42,8 @@ For our unsupervised classification we need feature embeddings of each image. Si
 
 - Supervised Classification
 Since we want our model to generalize well and focus on important underlying features for style prediction we perform a few simple data augmentation practices like flipping and rotation along the vertical axis. \
-<p align="center">
 ![Data-Aug](./images/Aug.png )\
 *Data Augmentation*
-</p>
  
 Each image in our dataset is an RGB image of size 180x180x3 where where 180 is the height and width of the image and 3 is the number of channels. The RGB channel values are in the [0, 255] range. This is not ideal for a neural network; in general we should seek to make our input values small. Hence, we standardize values to be in the [0, 1] range. 
 
