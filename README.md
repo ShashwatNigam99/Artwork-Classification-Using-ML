@@ -27,7 +27,7 @@ Dataset of ~12k images which is a subset of [MultitaskPainting100k](http://www.i
 The final filtered subset has a total of 12,619 images split into train and test set of 8837 and 3782 images respectively.
 
 ### Dataset Cleaning
-Our filtered dataset exhibited a class imbalance issue, hence we selected only the top 12 classes with highest represnetation and undersampled them to balance the dataset. 
+Our filtered dataset exhibited a class imbalance issue, hence we selected only the top 12 classes with highest represnetation and undersampled them to balance the dataset. \
 ![Imbalance](./images/Imbalance.png)\
 *Plot displaying the count of images in each class*
 This balanced dataset contains a total of 2556 samples which are split into training and validation set of 1908 and 648 respectively. 
@@ -38,6 +38,7 @@ With our future updates we plan on tackling this data imbalance issue better to 
 ### Dataset Preprocessing 
 - Unsupervised Classification 
 For our unsupervised classification we need feature embeddings of each image. Since CNNs are very good automatic feature extractors we use a [MobileNet](https://arxiv.org/abs/1704.04861) model to extract features by saving the feature map obtained from the fully connected layer of the model. This gives us a dataset with a dimensionality of 1000 since the model outputs a feature map of 1000 features. We further used PCA for dimensionality reduction and reduced our feature space to 100 which captures 85% of the variance of our original data. \
+&nbsp;
 ![PCA](./images/PCA.jpeg )\
 *Plot showing the variance represented by features in the data*
 
