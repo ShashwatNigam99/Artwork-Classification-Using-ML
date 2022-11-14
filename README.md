@@ -27,7 +27,9 @@ The final filtered subset has a total of 12,619 images split into train and test
 ### Dataset Cleaning
 Our filtered dataset exhibited a class imbalance issue, hence we selected only the top 12 classes with highest represnetation and undersampled them to balance the dataset. \
 ![Imbalance](./images/Imbalance.png)\
-*Plot displaying the count of images in each class*
+*Plot displaying the count of images in each class before balancing*
+![Balance](./images/Screen%20Shot%202022-11-13%20at%2010.49.30%20PM.png)\
+*Plot displaying the count of images in each class after balancing*
 
 This balanced dataset contains a total of 2556 samples which are split into training and validation set of 1908 and 648 respectively. 
 With our future updates we plan on tackling this data imbalance issue better to incorporate more classes by using a combination of data based, loss weighting and metric weighting based methods. \
@@ -80,11 +82,19 @@ To improve performance we fine-tuned the MobileNet backbone with our dataset whi
 ![Conv]
 
 ### Unsupervised classification: 
-For unsupervised classification we use 2 methods KMeans and GMM to form different clusters across the paintings. For kmeans we obtain the optimal value for the number of clusters using the elbow plot. After running these algorithms we obtain a x clusters , a few samples from the different clusters are displayed below. If we closely observe the clusters we can see that each of these clusters have similarities across their styles of painting, the classifier is able to understand the underlying pattern. 
+For unsupervised classification we use 2 methods KMeans and GMM to form different clusters across the paintings. For kmeans we obtain the optimal value for the number of clusters using the elbow plot. 
 
-![KMeans]()
-KMeans performs hard clustering hence it is difficult to understand if a particular painting has been exposed to multiple influences. Hence we use GMM to understand the influence of different styles on a particular painting. 
-![GMM]()
+![ElbowPlot](./images/elbow_plot.png) 
+*Elbow Plot to find optimal number of clusters*
+
+After running these algorithms we obtain 30 clusters , a few samples from the different clusters are displayed below.\
+![KM_2](./images/KM_2.png)\
+![KM_5](./images/KM_5.png)\
+![KM_14](./images/KM_14.png)\
+
+If we closely observe the clusters we can see that each of these clusters have similarities across their styles of painting, the classifier is able to understand the underlying pattern.
+KMeans performs hard clustering hence it is difficult to understand if a particular painting has been exposed to multiple influences. Hence we use GMM to understand the influence of different styles on a particular painting. For this particular paintaing the highest responsibility value is 0.99 corresponding to cluster 18 and it can be clearly observed that the styles are very similar. The painting also has non-zero responsibilities for clusters 3,10 and 17 and the influence can be observed in the style. 
+![GMM](./images/GMM.png)
 
 ## Results and Discussion
 ### Supervised 
@@ -109,13 +119,17 @@ Further experiments are performed by fine-tuning the MobileNet backbone with our
 ### Unsupervised 
 
 For our unsupervised algorithms feature selection and distance function are very important measures. Our features should be representative our data and what we want the model to capture. Every clustering algorithm uses a different distance function, it is important to understand whether the distance function is a good measure to calculate the similarities between datapoints in the given dataset.  
-In our project we used silhouette coefficient and davies bouldin index to measure the performance of our clustering algorithms. 
+In our project we used silhouette coefficient and davies bouldin index to measure the performance of our clustering algorithms. We obtained a silhouette coefficient score of 0.034730442 and Davies Bouldin Score of 2.9971544081949038. 
+This means that our clusters are very dispersed and not very seperated from other clusters hence we need to work on improving our clustering algorithm. 
 
 ### Future Work 
 - Currently we are experimenting with CNNs to arrive at the best model architecture, loss and hyperparameters for classification hence we have only focussed on genre classification, for our final update we will extend this to style,nationality and years.
 - For our final update we will perform another iteration on the dataset to incorporate more classes while tackling data imbalance using loss and metric weighting approaches. 
 - For unsupervised classification we will improve further on our clustering models by experimenting with better feature selectors. 
 - As our final analysis we will associate each cluster with a main theme and try to analyse which themes are more closely associated with each other based on intra-cluster distances. We will also analyse a few paintings to understand different influences across nationalities and time periods. 
+## Codebase
+1. [Dataset](https://colab.research.google.com/drive/1hvdSxcs1bi0Nfg2V3libpJIz0iKRmlYW?usp=sharing#scrollTo=NYLwCi5aV9s8)\
+2. [Supervised](https://colab.research.google.com/drive/1igZ5xy1RJUFgPg1H-cVaMgQqKpVk5-HL?usp=sharing#scrollTo=JiSonhnJwMuN)\
 ## Team
 Anisha Pal, Avinash Prabhu, Meher Shashwat Nigam, Mukul Khanna, Shivika Singh
 ### Work Distribution
