@@ -37,7 +37,7 @@ With our future updates we plan on tackling this data imbalance issue better to 
 *Dataset with images and corresponding labels*
 
 ### Dataset Preprocessing 
-- Unsupervised Classification\
+- Unsupervised Classification
 
 For our unsupervised classification we need feature embeddings of each image. Since CNNs are very good automatic feature extractors we use a [MobileNet](https://arxiv.org/abs/1704.04861) model to extract features by saving the feature map obtained from the fully connected layer of the model. This gives us a dataset with a dimensionality of 1000 since the model outputs a feature map of 1000 features. We further used PCA for dimensionality reduction and reduced our feature space to 100 which captures 85% of the variance of our original data. \
 ![PCA](./images/PCA.jpeg)\
@@ -57,7 +57,7 @@ We employ both supervised and unsupervised methods for this project.
 ### Supervised classification:
 For supervised classification we use Convolutional Neural Networks, to understand if CNNs are able to capture the information, we experimented with a basic neural network with 3 convolutional layers and dropout. As expected the model was unable to perform well and produced very noisy results. 
 
-![Conv](./images/Conv3.png#center)\
+![Conv](./images/Conv3.png)\
 *Accuracy and Loss curves for 3 layer CNN*
 
 
@@ -78,8 +78,6 @@ To improve performance we fine-tuned the MobileNet backbone with our dataset whi
 ![Mobilefine](./images/Mobile-fine.png)\
 *Results on MobileNet with fine-tuned backbone*
 
-
-![Conv]
 
 ### Unsupervised classification: 
 For unsupervised classification we use 2 methods KMeans and GMM to form different clusters across the paintings. For kmeans we obtain the optimal value for the number of clusters using the elbow plot. 
