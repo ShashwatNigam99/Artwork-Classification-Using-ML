@@ -90,11 +90,12 @@ For unsupervised classification we use 2 methods KMeans and GMM to form differen
 After running these algorithms we obtain 30 clusters , a few samples from the different clusters are displayed below.\
 ![KM_2](./images/KM_2.png)\
 ![KM_5](./images/KM_5.png)\
-![KM_14](./images/KM_14.png)\
+![KM_14](./images/KM_14.png)
 
 If we closely observe the clusters we can see that each of these clusters have similarities across their styles of painting, the classifier is able to understand the underlying pattern.
 KMeans performs hard clustering hence it is difficult to understand if a particular painting has been exposed to multiple influences. Hence we use GMM to understand the influence of different styles on a particular painting. For this particular paintaing the highest responsibility value is 0.99 corresponding to cluster 18 and it can be clearly observed that the styles are very similar. The painting also has non-zero responsibilities for clusters 3,10 and 17 and the influence can be observed in the style. 
 ![GMM](./images/GMM.png)
+*Influence of different styles on one painting*
 
 ## Results and Discussion
 ### Supervised 
