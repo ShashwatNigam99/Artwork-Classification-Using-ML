@@ -37,8 +37,7 @@ With our future updates we plan on tackling this data imbalance issue better to 
 *Dataset with images and corresponding labels*
 
 ### Dataset Preprocessing 
-- Unsupervised Classification
-
+- Unsupervised Classification\
 For our unsupervised classification we need feature embeddings of each image. Since CNNs are very good automatic feature extractors we use a [MobileNet](https://arxiv.org/abs/1704.04861) model to extract features by saving the feature map obtained from the fully connected layer of the model. This gives us a dataset with a dimensionality of 1000 since the model outputs a feature map of 1000 features. We further used PCA for dimensionality reduction and reduced our feature space to 100 which captures 85% of the variance of our original data. \
 ![PCA](./images/PCA.jpeg)\
 *Plot showing the variance represented by features in the data*
@@ -127,8 +126,8 @@ This means that our clusters are very dispersed and not very seperated from othe
 - For unsupervised classification we will improve further on our clustering models by experimenting with better feature selectors. 
 - As our final analysis we will associate each cluster with a main theme and try to analyse which themes are more closely associated with each other based on intra-cluster distances. We will also analyse a few paintings to understand different influences across nationalities and time periods. 
 ## Codebase
-1. [Dataset](https://colab.research.google.com/drive/1hvdSxcs1bi0Nfg2V3libpJIz0iKRmlYW?usp=sharing#scrollTo=NYLwCi5aV9s8)\
-2. [Supervised](https://colab.research.google.com/drive/1igZ5xy1RJUFgPg1H-cVaMgQqKpVk5-HL?usp=sharing#scrollTo=JiSonhnJwMuN)\
+1. [Dataset](https://colab.research.google.com/drive/1hvdSxcs1bi0Nfg2V3libpJIz0iKRmlYW?usp=sharing#scrollTo=NYLwCi5aV9s8)
+2. [Supervised](https://colab.research.google.com/drive/1igZ5xy1RJUFgPg1H-cVaMgQqKpVk5-HL?usp=sharing#scrollTo=JiSonhnJwMuN)
 ## Team
 Anisha Pal, Avinash Prabhu, Meher Shashwat Nigam, Mukul Khanna, Shivika Singh
 ### Work Distribution
