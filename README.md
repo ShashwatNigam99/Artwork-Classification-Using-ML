@@ -177,7 +177,7 @@ We compared the performance of our supervised models using accuracy, f1, precisi
 It can be clearly observed that a 3 layer CNN is extremely noisy and unable to learn well, its capacity of learning is lower. The MobileNet model performed significantly better than the convolution model with better values across all the metrics. To improve its performance we experimented with different learning rates and obtained the following results. Based on these results we obtained at the optimum learning rate of 1e-4. There was further improvement in the performance when we used DensetNet121 backbone and experimented with learning rate to obtain the optimum learning rate of 1e-3. The best results were obtained by using pretrained weights for the DenseNet121 model with learning-rate of 1e-3. Top-5 accuracy was used to compare the best performing models since we want to maximize the confidence of performing best on a select few popular genres. 
 
 | Model | Accuracy | Precision | Recall | F1 | Top-5 Accuracy|
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- |
 | 3 layer CNN | 0.42| 0.47|0.42 |0.40 |
 | Mobilenet backbone (frozen); LR = 1e-4| 0.57 | 0.59 | 0.57 | 0.58 | 0.74|
 | Mobilenet backbone (frozen); LR = 5e-4 | 0.54| 0.54| 0.54 | 0.54 | 0.747 |
@@ -190,6 +190,7 @@ It can be clearly observed that a 3 layer CNN is extremely noisy and unable to l
 We select the best performing model here, DenseNet121 backbone (fine-tuning) and perform style classification as the downstream task to obtain the follwing results. 
 
 | Model | Accuracy | Precision | Recall | F1 | Top-5 Accuracy|
+| --- | --- | --- | --- | --- | --- |
 | DenseNet121 backbone (fine-tuning)| 0.51 | 0.54 | 0.51 | 0.51 | 0.898 |
 
 ![Images](./images/Results.png)\
@@ -198,18 +199,19 @@ We select the best performing model here, DenseNet121 backbone (fine-tuning) and
 For our best performing model we are displaying the results for each genre. This helps us with further analysis on the best performing and worst performing genres. 
 
 | Class-Names | Precision | Recall | F1 |
-abstract | 0.75 | 0.83 | 0.79 |
-cityscape | 0.70 | 0.65 | 0.67 |
-flower painting |0.88 | 0.81 | 0.85 |
-landscape | 0.61 | 0.70 | 0.66 |
-mythological painting | 0.74 | 0.46 | 0.57 |
-nude painting | 0.58 | 0.57 | 0.58 |
-portrait | 0.51 | 0.65 | 0.57 |
-religious painting | 0.44 | 0.50 | 0.47 |
-self-portrait | 0.58 | 0.61 | 0.59 |
-sketch and study | 0.67 | 0.72 | 0.70 |
-still life |0.75 | 0.61 | 0.67 |
-symbolic painting |0.58 | 0.54 | 0.56 |
+| --- | --- | --- | --- |
+| abstract | 0.75 | 0.83 | 0.79 |
+| cityscape | 0.70 | 0.65 | 0.67 |
+| flower painting |0.88 | 0.81 | 0.85 |
+| landscape | 0.61 | 0.70 | 0.66 |
+| mythological painting | 0.74 | 0.46 | 0.57 |
+| nude painting | 0.58 | 0.57 | 0.58 |
+| portrait | 0.51 | 0.65 | 0.57 |
+| religious painting | 0.44 | 0.50 | 0.47 |
+| self-portrait | 0.58 | 0.61 | 0.59 |
+| sketch and study | 0.67 | 0.72 | 0.70 |
+| still life |0.75 | 0.61 | 0.67 |
+| symbolic painting |0.58 | 0.54 | 0.56 |
 
 
 If we look at the corresponding images for each genre we can see that the genres which are easy to classify have a very characteristic style which the CNN can understand easily. They also have clear features which can be easily understood. Whereas in cases where the models show poor performance example potraits and religious painting we can see that there is a significant overlap in the styles, confusing the model. 
@@ -227,6 +229,7 @@ In our project we used silhouette coefficient and davies bouldin index to measur
 
 #### KMeans
 | Feature extractor | Silhouette | Davies Bouldin |
+| --- | --- | --- |
 | Kernel PCA | 0.0689 | 2.7367 | 
 | PCA | 0.0289 | 3.3776 | 
 | VGG16 | 0.01057 | 3.9793 | 
@@ -235,6 +238,7 @@ In our project we used silhouette coefficient and davies bouldin index to measur
 #### GMM 
 
 | Feature extractor | Silhouette | Davies Bouldin |
+| --- | --- | --- 
 | Kernel PCA | -0.0700 | 3.188 | 
 | PCA | -0.043 | 4.3099 | 
 | VGG16 | 0.0035 | 3.9184 | 
