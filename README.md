@@ -112,7 +112,7 @@ For our DenseNet architecture we experimented with two values of learning rate 1
 ![DenseNet](./images/Dense_lr_1e-4.png)\
 *DenseNet with lr = 1e-4* 
 
-![DenseNet](./images/Dense_Best.png.png)\
+![DenseNet](./images/Dense_Best.png)\
 *DenseNet with pretrained backbone*
 
 #### Style Classification
