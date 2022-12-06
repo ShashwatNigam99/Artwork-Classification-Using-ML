@@ -101,18 +101,18 @@ To improve performance we fine-tuned the MobileNet backbone with our dataset whi
 
 To improve the metrics further we performed experiments with DenseNet121 backbone. We decided to experiment with this backbone because it is a combination of both better performing and efficient model. DenseNet121 makes the deep learning networks go even deeper, but at the same time makes them more efficient to train, by using shorter connections between the layers. \
 
-![DenseNet](./images/DenseNet.png)\
+![DenseNet](./images/Dense.png)\
 *DenseNet121 Architecture*
 
 For our DenseNet architecture we experimented with two values of learning rate 1e-3 and 1e-4 and found the model to perform the best with 1e-4 learning rate with a pretrained backbone. 
 
-![DenseNet](./images/DenseNet_lr_1e-3.png)\
+![DenseNet](./images/Dense_lr_1e-3.png)\
 *DenseNet with lr = 1e-3*
 
-![DenseNet](./images/DenseNet_lr_1e-4.png)\
+![DenseNet](./images/Dense_lr_1e-4.png)\
 *DenseNet with lr = 1e-4* 
 
-![DenseNet](./images/DenseNet_best.png)\
+![DenseNet](./images/Dense_Best.png.png)\
 *DenseNet with pretrained backbone*
 
 #### Style Classification
@@ -143,15 +143,15 @@ Few observations that can be noted from this are as follows :
 
 Since we have established that VGG16 performs the best clustering hence we can do a deeper analysis of the different clusters thus obtained. 
 
-![KM_6](./images/KM_6.png)\
-![KM_6_plot](./images/KM_6_plot.png)\
-*Cluster 6 and its corresponding distribution*
-![KM_13](./images/KM_13.png)\
-![KM_13_plot](./images/KM_13_plot.png)\
-*Cluster 13 and its corresponding distribution*
-![KM_17](./images/KM_17.png)\
-![KM_17_plot](./images/KM_17_plot.png)\
-*Cluster 17 and its corresponding distribution*
+![KM_8](./images/KM_8.png)\
+![KM_8_plot](./images/KM_8_plot.png)\
+*Cluster 8 and its corresponding distribution*
+![KM_21](./images/KM_21.png)\
+![KM_21_plot](./images/KM_13_plot.png)\
+*Cluster 21 and its corresponding distribution*
+![KM_24](./images/KM_24.png)\
+![KM_24_plot](./images/KM_17_plot.png)\
+*Cluster 24 and its corresponding distribution*
 
 If we closely observe the clusters we can see that each of these clusters have similarities across their styles of painting, the classifier is able to understand the underlying pattern. We have plotted the graphs for these clusters displaying the distribution across nationality, time-period, artist, genre and style. As we can see each cluster has a rich combination of different artworks spanning different groups. 
 
