@@ -147,10 +147,10 @@ Since we have established that VGG16 performs the best clustering hence we can d
 ![KM_8_plot](./images/KM_8_plot.png)\
 *Cluster 8 and its corresponding distribution*
 ![KM_21](./images/KM_21.png)\
-![KM_21_plot](./images/KM_13_plot.png)\
+![KM_21_plot](./images/KM_21_plot.png)\
 *Cluster 21 and its corresponding distribution*
 ![KM_24](./images/KM_24.png)\
-![KM_24_plot](./images/KM_17_plot.png)\
+![KM_24_plot](./images/KM_24_plot.png)\
 *Cluster 24 and its corresponding distribution*
 
 If we closely observe the clusters we can see that each of these clusters have similarities across their styles of painting, the classifier is able to understand the underlying pattern. We have plotted the graphs for these clusters displaying the distribution across nationality, time-period, artist, genre and style. As we can see each cluster has a rich combination of different artworks spanning different groups. 
