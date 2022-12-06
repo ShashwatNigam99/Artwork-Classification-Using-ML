@@ -143,29 +143,26 @@ Few observations that can be noted from this are as follows :
 
 Since we have established that VGG16 performs the best clustering hence we can do a deeper analysis of the different clusters thus obtained. 
 
-![KM_8](./images/KM_8.png)\
-![KM_8_plot](./images/KM_8_plot.png)\
-*Cluster 8 and its corresponding distribution*
 ![KM_21](./images/KM_21.png)\
-![KM_21_plot](./images/KM_21_plot.png)\
+![KM_21_plot](./images/KM_21_plot_1.png)\
 *Cluster 21 and its corresponding distribution*
 ![KM_24](./images/KM_24.png)\
-![KM_24_plot](./images/KM_24_plot.png)\
+![KM_24_plot](./images/KM_8_plot_1.png)\
 *Cluster 24 and its corresponding distribution*
 
 If we closely observe the clusters we can see that each of these clusters have similarities across their styles of painting, the classifier is able to understand the underlying pattern. We have plotted the graphs for these clusters displaying the distribution across nationality, time-period, artist, genre and style. As we can see each cluster has a rich combination of different artworks spanning different groups. 
 
-KMeans performs hard clustering hence it is difficult to understand if a particular painting has been exposed to multiple influences. Hence we use GMM to understand the influence of different styles on a particular painting. For this particular paintaing the highest responsibility value is 0.99 corresponding to cluster 19 and it can be clearly observed that the styles are very similar. The painting also has non-zero responsibilities for clusters 7 and 21 and the influence can be observed in the style. The corresponding distribution across all the different groups can also be observed for each of these clusters. \
+KMeans performs hard clustering hence it is difficult to understand if a particular painting has been exposed to multiple influences. Hence we use GMM to understand the influence of different styles on a particular painting. For this particular paintaing the highest responsibility value is 0.99 corresponding to cluster 8 and it can be clearly observed that the styles are very similar. The painting also has non-zero responsibilities for clusters 24 and 6 and the influence can be observed in the style. The corresponding distribution across all the different groups can also be observed for each of these clusters. \
 ![GMM](./images/GMM.png)
-![GMM_19](./images/GMM_19.png)\
+![GMM_8](./images/GMM_8.png)\
 *Main Cluster to which the image belongs and its distribution*
-![GMM_19_plot](./images/GMM_19_plot.png)\
-![GMM_7](./images/GMM_7.png)\
-![GMM_7_plot](./images/GMM_7_plot.png)\
-*Cluster 7 and its corresponding distribution*
-![GMM_21](./images/GMM_21.png)\
-![GMM_21_plot](./images/GMM_21_plot.png)\
-*Cluster 21 and its corresponding distribution*
+![GMM_8_plot](./images/GMM_8_plot.png)\
+![GMM_6](./images/GMM_6.png)\
+![GMM_6_plot](./images/GMM_6_plot.png)\
+*Cluster 6 and its corresponding distribution*
+![GMM_24](./images/GMM_24.png)\
+![GMM_24_plot](./images/GMM_24_plot.png)\
+*Cluster 24 and its corresponding distribution*
 
 
 *Influence of different styles on one painting*
