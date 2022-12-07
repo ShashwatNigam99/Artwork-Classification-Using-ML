@@ -3,12 +3,12 @@
 ## Introduction
 - Since the advent of digitalization, millions of artworks have been digitized, opening up the world of art to countless new people. However, navigating this space for a layman is difficult due to the lack of metadata and contextual information needed to describe and understand the artwork. 
 - Unless one knows title and artist of an artwork, finding the artwork is almost impossible. In this research project, we use both supervised and unsupervised models to generate metadata given an image of an artwork. 
-- Specifically, given an artwork, we will try to predict the genre, time period, geography and the artist. So far we have focussed solely on genre classification which we will further extrapolate  to time period, geography and the artist at our final update. 
+- Specifically, given an artwork, we will try to predict the genre and style of the artist. 
 - We have collected dataset of ~12k images which is a subset of [MultitaskPainting100k](http://www.ivl.disco.unimib.it/activities/paintings/). 
 
 ## Problem Definition
 1. *Throughout history it has been observed that artistic collaborations fuel creativity and give rise to art movements.* Our study aims to find correlations between different artistic styles spanning geographies and periods, which would help track the journey of art and how it evolved. Soft clustering approaches can help deduce influence of different factors (genre, time period, geography) on a particular work of art. Studying similarity and influence across time and geography between different art styles is a relevant research area.
-2. We wish to build a model that can classify an artwork according to its genre, time period, geography etc. If possible we would like to study the features the model learns that helps it differentiate between different kinds of artworks.
+2. We wish to build a model that can classify an artwork according to its genre and style. If possible we would like to study the features the model learns that helps it differentiate between different kinds of artworks.
 
 
 <!-- ## Related Work 
@@ -26,12 +26,12 @@ The final filtered subset has a total of 12,619 images split into train and test
 
 ### Dataset Cleaning
 #### Genre Classification
-Our filtered dataset exhibited a class imbalance issue, hence we selected only the top 12 classes with highest represnetation and undersampled them to balance the dataset for genre classification . \ 
-![Imbalance](./images/Imbalance.png)\
+Our filtered dataset exhibited a class imbalance issue, hence we selected only the top 12 classes with highest represnetation and undersampled them to balance the dataset for genre classification.
+![Imbalance](./images/Imbalance.png)
 *Plot displaying the count of images in each class before balancing*
-![Balance](./images/Screen%20Shot%202022-11-13%20at%2010.49.30%20PM.png)\
+![Balance](./images/Screen%20Shot%202022-11-13%20at%2010.49.30%20PM.png)
 *Plot displaying the count of images in each class after balancing*
-![Dataset](./images/Filtered.png)\
+![Dataset](./images/Filtered.png)
 *Dataset with images and corresponding labels*
 
 This balanced dataset contains a total of 2556 samples which are split into training and validation set of 1908 and 648 respectively. \
@@ -52,20 +52,24 @@ Similarly we balanced our dataset for style classification and selected the top 
 
 
 ### Dataset Preprocessing 
-- Unsupervised Classification\
-For our unsupervised classification we use the following methods for feature extraction:\
+- Unsupervised Classification
+
+For our unsupervised classification we use the following methods for feature extraction:
 1. PCA
 2. Kernel PCA
 3. VGG16 
 4. MobileNet 
 
-In each of these cases we reduce the dimensions to 566, capturing 95% of the total variance in the data. We employ all these different methods to perform the best feature extraction. Feature extraction is a very important step since that will help our model understand which features to focus on to define similarity between images and perform meanigful clustering.\
-![PCA](./images/PCA.jpeg)\
+In each case we get a linear vector of reduced dimension. For the PCA techniques we retain 95% variance. Feature extraction is a very important step since that will help our model understand which features to focus on to define similarity between images and perform meaningful clustering. We run clustering algorithms on all the representations and discuss performance in further sections.
+
+![PCA](./images/PCA.jpeg)
 *Plot showing the variance represented by features in the data*
 
-- Supervised Classification\
-Since we want our model to generalize well and focus on important underlying features for style prediction we perform a few simple data augmentation practices like flipping and rotation along the vertical axis. \
-![Data-Aug](./images/Aug.png#center )\
+- Supervised Classification
+
+Since we want our model to generalize well and focus on important underlying features for style prediction we perform a few simple data augmentation practices like flipping and rotation along the vertical axis. 
+
+![Data-Aug](./images/Aug.png#center )
 *Data Augmentation*
  
 Each image in our dataset is an RGB image of size 180x180x3 where where 180 is the height and width of the image and 3 is the number of channels. The RGB channel values are in the [0, 255] range. This is not ideal for a neural network; in general we should seek to make our input values small. Hence, we standardize values to be in the [0, 1] range. 
@@ -79,46 +83,50 @@ We employ both supervised and unsupervised methods for this project.
 #### Genre Classification
 For supervised classification we use Convolutional Neural Networks, to understand if CNNs are able to capture the information, we experimented with a basic neural network with 3 convolutional layers and dropout. As expected the model was unable to perform well and produced very noisy results. 
 
-![Conv](./images/Conv3.png)\
+![Conv](./images/Conv3.png)
+
 *Accuracy and Loss curves for 3 layer CNN*
 
 
 Since our aim is to also achieve good results with good computational efficiency we decided to use the MobileNet architecture to build our prediction pipeline. Another reason for going with MobileNet being given its computational efficiency it will lead to faster experimentations which helps us better engineer the other parts of our pipeline like loss, optimizers, hyperparameters. 
 
-![MobileNet](./images/MobileNet.png)\
+![MobileNet](./images/MobileNet.png)
+
 *MobileNet Architecture*
 
 We further performed hyperparameter tuning to arrive at the learning rate of 1e-4 as a good approximation for the optimum value. In our first few experiments with MobileNet we froze the backbone which gave us consistent results across both training and validation sets. 
 
-![Mobilefreeze](./images/Mobile-1e-4.png )\
+![Mobilefreeze](./images/Mobile-1e-4.png )
+
 *Results on MobileNet with frozen backbone*
 
 
 To improve performance we fine-tuned the MobileNet backbone with our dataset which boosted our accuracy on the testing set. 
 
-![Mobilefine](./images/Mobile-fine.png)\
+![Mobilefine](./images/Mobile-fine.png)
+
 *Results on MobileNet with pretuned backbone*
 
-To improve the metrics further we performed experiments with DenseNet121 backbone. We decided to experiment with this backbone because it is a combination of both better performing and efficient model. DenseNet121 makes the deep learning networks go even deeper, but at the same time makes them more efficient to train, by using shorter connections between the layers. \
+To improve the metrics further we performed experiments with DenseNet121 backbone. We decided to experiment with this backbone because it is a combination of both better performing and efficient model. DenseNet121 makes the deep learning networks go even deeper, but at the same time makes them more efficient to train, by using shorter connections between the layers.
 
-![DenseNet](./images/Dense.png)\
+![DenseNet](./images/Dense.png)
 *DenseNet121 Architecture*
 
 For our DenseNet architecture we experimented with two values of learning rate 1e-3 and 1e-4 and found the model to perform the best with 1e-4 learning rate with a pretrained backbone. 
 
-![DenseNet](./images/Dense_lr_1e-3.png)\
+![DenseNet](./images/Dense_lr_1e-3.png)
 *DenseNet with lr = 1e-3*
 
-![DenseNet](./images/Dense_lr_1e-4.png)\
+![DenseNet](./images/Dense_lr_1e-4.png)
 *DenseNet with lr = 1e-4* 
 
-![DenseNet](./images/Dense_Best.png)\
+![DenseNet](./images/Dense_Best.png)
 *DenseNet with pretrained backbone*
 
 #### Style Classification
 
-For style classification we used the best model obtained from genre classfication and fine tuned it for the style classification task. This was done because the CNN layers would have already learned the feature representation for the dataset, hence it will be easier for it to perform another similar downstream task of style classification. The best model from genre classification would have learnt the best representation of the dataset hence it was used. \
-![Style](./images/Dense_style.png)\
+For style classification we used the best model obtained from genre classfication and fine tuned it for the style classification task. This was done because the CNN layers would have already learned the feature representation for the dataset, hence it will be easier for it to perform another similar downstream task of style classification. The best model from genre classification would have learnt the best representation of the dataset hence it was used.
+![Style](./images/Dense_style.png)
 
 ### Unsupervised classification: 
 For unsupervised classification we use 2 methods KMeans and GMM to form different clusters across the paintings. For kmeans we obtain the optimal value for the number of clusters using the elbow plot. 
@@ -128,13 +136,16 @@ For unsupervised classification we use 2 methods KMeans and GMM to form differen
 
 After running these algorithms we obtain 25 clusters . As has been mentioned in Data Preprocessing, we ran our KMeans algorithm after running feature extraction with all the different methods. Clustering results from each of these methods is displayed below. \
 
-![KM_kernel](./images/KM_kernel.png)\
+![KM_kernel](./images/KM_kernel.png)
 *Clusters with Kernel PCA as feature extractor*
-![KM_pca](./images/KM_pca.png)\
+
+![KM_pca](./images/KM_pca.png)
 *Clusters with PCA as feature extractor*
-![KM_vgg](./images/KM_vgg.png)\
+
+![KM_vgg](./images/KM_vgg.png)
 *Clusters with VGG16 as feature extractor*
-![KM_mobile](./images/KM_mobile.png)\
+
+![KM_mobile](./images/KM_mobile.png)
 *Clusters with MobileNet as feature extractor*
 
 Few observations that can be noted from this are as follows : 
@@ -143,25 +154,25 @@ Few observations that can be noted from this are as follows :
 
 Since we have established that VGG16 performs the best clustering hence we can do a deeper analysis of the different clusters thus obtained. 
 
-![KM_21](./images/KM_21.png)\
-![KM_21_plot](./images/KM_21_plot_1.png)\
+![KM_21](./images/KM_21.png)
+![KM_21_plot](./images/KM_21_plot_1.png)
 *Cluster 21 and its corresponding distribution*
-![KM_24](./images/KM_24.png)\
-![KM_24_plot](./images/KM_8_plot_2.png)\
+![KM_24](./images/KM_24.png)
+![KM_24_plot](./images/KM_8_plot_2.png)
 *Cluster 24 and its corresponding distribution*
 
 If we closely observe the clusters we can see that each of these clusters have similarities across their styles of painting, the classifier is able to understand the underlying pattern. We have plotted the graphs for these clusters displaying the distribution across nationality, time-period, artist, genre and style. As we can see each cluster has a rich combination of different artworks spanning different groups. 
 
-KMeans performs hard clustering hence it is difficult to understand if a particular painting has been exposed to multiple influences. Hence we use GMM to understand the influence of different styles on a particular painting. For this particular paintaing the highest responsibility value is 0.99 corresponding to cluster 8 and it can be clearly observed that the styles are very similar. The painting also has non-zero responsibilities for clusters 24 and 6 and the influence can be observed in the style. The corresponding distribution across all the different groups can also be observed for each of these clusters. \
+KMeans performs hard clustering hence it is difficult to understand if a particular painting has been exposed to multiple influences. Hence we use GMM to understand the influence of different styles on a particular painting. For this particular paintaing the highest responsibility value is 0.99 corresponding to cluster 8 and it can be clearly observed that the styles are very similar. The painting also has non-zero responsibilities for clusters 24 and 6 and the influence can be observed in the style. The corresponding distribution across all the different groups can also be observed for each of these clusters.
 ![GMM](./images/GMM.png)
-![GMM_8](./images/GMM_8.png)\
+![GMM_8](./images/GMM_8.png)
 *Main Cluster to which the image belongs and its distribution*
-![GMM_8_plot](./images/GMM_8_plot.png)\
-![GMM_6](./images/GMM_6.png)\
-![GMM_6_plot](./images/GMM_6_plot.png)\
+![GMM_8_plot](./images/GMM_8_plot.png)
+![GMM_6](./images/GMM_6.png)
+![GMM_6_plot](./images/GMM_6_plot.png)
 *Cluster 6 and its corresponding distribution*
-![GMM_24](./images/GMM_24.png)\
-![GMM_24_plot](./images/GMM_24_plot.png)\
+![GMM_24](./images/GMM_24.png)
+![GMM_24_plot](./images/GMM_24_plot.png)
 *Cluster 24 and its corresponding distribution*
 
 
@@ -213,10 +224,10 @@ For our best performing model we are displaying the results for each genre. This
 
 If we look at the corresponding images for each genre we can see that the genres which are easy to classify have a very characteristic style which the CNN can understand easily. They also have clear features which can be easily understood. Whereas in cases where the models show poor performance example potraits and religious painting we can see that there is a significant overlap in the styles, confusing the model. 
 
-![Best](./images/best.png)\
+![Best](./images/best.png)
 *Best performing classes for genre classification*
 
-![Worst](./images/worst.png)\
+![Worst](./images/worst.png)
 *Worst performing classes for genre classification*
 
 ### Unsupervised 
