@@ -62,9 +62,6 @@ For our unsupervised classification we use the following methods for feature ext
 
 In each case we get a linear vector of reduced dimension. For the PCA techniques we retain 95% variance. Feature extraction is a very important step since that will help our model understand which features to focus on to define similarity between images and perform meaningful clustering. We run clustering algorithms on all the representations and discuss performance in further sections.
 
-![PCA](./images/PCA.jpeg)
-*Plot showing the variance represented by features in the data*
-
 - Supervised Classification
 
 Since we want our model to generalize well and focus on important underlying features for style prediction we perform a few simple data augmentation practices like flipping and rotation along the vertical axis. 
