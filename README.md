@@ -165,12 +165,12 @@ KMeans performs hard clustering hence it is difficult to understand if a particu
 ![GMM](./images/GMM.png)
 ![GMM_8](./images/GMM_8.png)
 *Main Cluster to which the image belongs and its distribution*
-![GMM_8_plot](./images/GMM_8_plot.png)
+![GMM_8_plot](./images/GMM_8_plot_1.png)
 ![GMM_6](./images/GMM_6.png)
-![GMM_6_plot](./images/GMM_6_plot.png)
+![GMM_6_plot](./images/GMM_6_plot_1.png)
 *Cluster 6 and its corresponding distribution*
 ![GMM_24](./images/GMM_24.png)
-![GMM_24_plot](./images/GMM_24_plot.png)
+![GMM_24_plot](./images/GMM_24_plot_1.png)
 *Cluster 24 and its corresponding distribution*
 
 
