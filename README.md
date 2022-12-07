@@ -125,7 +125,8 @@ For our DenseNet architecture we experimented with two values of learning rate 1
 
 #### Style Classification
 
-For style classification we used the best model obtained from genre classfication and fine tuned it for the style classification task. This was done because the CNN layers would have already learned the feature representation for the dataset, hence it will be easier for it to perform another similar downstream task of style classification. The best model from genre classification would have learnt the best representation of the dataset hence it was used.
+For style classification we used the best model obtained from genre classfication and retrained it for the style classification task. This is done since both the tasks are very similar and involve the same data. Thus we can confidently say that it will perform better for the task of style classification as well compared to the other low performing models. 
+The model thus used for style classification is DenseNet121.
 ![Style](./images/Dense_style.png)
 
 ### Unsupervised classification: 
@@ -195,7 +196,7 @@ It can be clearly observed that a 3 layer CNN is extremely noisy and unable to l
 | DenseNet121 backbone (frozen); LR = 1e-4| 0.61 | 0.62 | 0.61 | 0.61 | 0.924 |
 | DenseNet121 backbone (fine-tuning)| 0.64 | 0.65 | 0.65 | 0.65 | 0.94 |
 
-We select the best performing model here, DenseNet121 backbone (fine-tuning) and perform style classification as the downstream task to obtain the follwing results. 
+We select the best performing model here, DenseNet121 backbone (fine-tuning) and perform style classification as the downstream task to obtain the following results. 
 
 | Model | Accuracy | Precision | Recall | F1 | Top-5 Accuracy|
 | --- | --- | --- | --- | --- | --- |
