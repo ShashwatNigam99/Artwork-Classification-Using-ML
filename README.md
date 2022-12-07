@@ -27,11 +27,17 @@ The final filtered subset has a total of 12,619 images split into train and test
 ### Dataset Cleaning
 #### Genre Classification
 Our filtered dataset exhibited a class imbalance issue, hence we selected only the top 12 classes with highest represnetation and undersampled them to balance the dataset for genre classification.
+
 ![Imbalance](./images/Imbalance.png)
+
 *Plot displaying the count of images in each class before balancing*
+
 ![Balance](./images/Screen%20Shot%202022-11-13%20at%2010.49.30%20PM.png)
+
 *Plot displaying the count of images in each class after balancing*
+
 ![Dataset](./images/Filtered.png)
+
 *Dataset with images and corresponding labels*
 
 This balanced dataset contains a total of 2556 samples which are split into training and validation set of 1908 and 648 respectively. \
@@ -107,43 +113,53 @@ To improve performance we fine-tuned the MobileNet backbone with our dataset whi
 To improve the metrics further we performed experiments with DenseNet121 backbone. We decided to experiment with this backbone because it is a combination of both better performing and efficient model. DenseNet121 makes the deep learning networks go even deeper, but at the same time makes them more efficient to train, by using shorter connections between the layers.
 
 ![DenseNet](./images/Dense.png)
+
 *DenseNet121 Architecture*
 
 For our DenseNet architecture we experimented with two values of learning rate 1e-3 and 1e-4 and found the model to perform the best with 1e-4 learning rate with a pretrained backbone. 
 
 ![DenseNet](./images/Dense_lr_1e-3.png)
+
 *DenseNet with lr = 1e-3*
 
 ![DenseNet](./images/Dense_lr_1e-4.png)
+
 *DenseNet with lr = 1e-4* 
 
 ![DenseNet](./images/Dense_Best.png)
+
 *DenseNet with pretrained backbone*
 
 #### Style Classification
 
 For style classification we used the best model obtained from genre classfication and retrained it for the style classification task. This is done since both the tasks are very similar and involve the same data. Thus we can confidently say that it will perform better for the task of style classification as well compared to the other low performing models. 
 The model thus used for style classification is DenseNet121.
+
 ![Style](./images/Dense_style.png)
 
 ### Unsupervised classification: 
 For unsupervised classification we use 2 methods KMeans and GMM to form different clusters across the paintings. For kmeans we obtain the optimal value for the number of clusters using the elbow plot. 
 
 ![ElbowPlot](./images/elbow_plot.png) 
+
 *Elbow Plot to find optimal number of clusters*
 
 After running these algorithms we obtain 25 clusters . As has been mentioned in Data Preprocessing, we ran our KMeans algorithm after running feature extraction with all the different methods. Clustering results from each of these methods is displayed below. \
 
 ![KM_kernel](./images/KM_kernel.png)
+
 *Clusters with Kernel PCA as feature extractor*
 
 ![KM_pca](./images/KM_pca.png)
+
 *Clusters with PCA as feature extractor*
 
 ![KM_vgg](./images/KM_vgg.png)
+
 *Clusters with VGG16 as feature extractor*
 
 ![KM_mobile](./images/KM_mobile.png)
+
 *Clusters with MobileNet as feature extractor*
 
 Few observations that can be noted from this are as follows : 
@@ -153,28 +169,43 @@ Few observations that can be noted from this are as follows :
 Since we have established that VGG16 performs the best clustering hence we can do a deeper analysis of the different clusters thus obtained. 
 
 ![KM_21](./images/KM_21.png)
+
 ![KM_21_plot](./images/KM_21_plot_1.png)
+
 *Cluster 21 and its corresponding distribution*
+
 ![KM_24](./images/KM_24.png)
+
 ![KM_24_plot](./images/KM_8_plot_2.png)
+
 *Cluster 24 and its corresponding distribution*
 
 If we closely observe the clusters we can see that each of these clusters have similarities across their styles of painting, the classifier is able to understand the underlying pattern. We have plotted the graphs for these clusters displaying the distribution across nationality, time-period, artist, genre and style. As we can see each cluster has a rich combination of different artworks spanning different groups. 
 
 KMeans performs hard clustering hence it is difficult to understand if a particular painting has been exposed to multiple influences. Hence we use GMM to understand the influence of different styles on a particular painting. For this particular paintaing the highest responsibility value is 0.99 corresponding to cluster 8 and it can be clearly observed that the styles are very similar. The painting also has non-zero responsibilities for clusters 24 and 6 and the influence can be observed in the style. The corresponding distribution across all the different groups can also be observed for each of these clusters.
+
 ![GMM](./images/GMM.png)
+*Influence of different styles on one painting*
+
 ![GMM_8](./images/GMM_8.png)
-*Main Cluster to which the image belongs and its distribution*
+
 ![GMM_8_plot](./images/GMM_8_plot_1.png)
+
+*Main Cluster to which the image belongs and its distribution*
+
 ![GMM_6](./images/GMM_6.png)
+
 ![GMM_6_plot](./images/GMM_6_plot_1.png)
+
 *Cluster 6 and its corresponding distribution*
+
 ![GMM_24](./images/GMM_24.png)
+
 ![GMM_24_plot](./images/GMM_24_plot_1.png)
+
 *Cluster 24 and its corresponding distribution*
 
 
-*Influence of different styles on one painting*
 
 ## Results and Discussion
 ### Supervised 
@@ -199,7 +230,8 @@ We select the best performing model here, DenseNet121 backbone (fine-tuning) and
 | --- | --- | --- | --- | --- | --- |
 | DenseNet121 backbone (fine-tuning)| 0.51 | 0.54 | 0.51 | 0.51 | 0.898 |
 
-![Images](./images/Results.png)\
+![Images](./images/Results.png)
+
 *Classification results on images*
 
 For our best performing model we are displaying the results for each genre. This helps us with further analysis on the best performing and worst performing genres. 
@@ -223,9 +255,11 @@ For our best performing model we are displaying the results for each genre. This
 If we look at the corresponding images for each genre we can see that the genres which are easy to classify have a very characteristic style which the CNN can understand easily. They also have clear features which can be easily understood. Whereas in cases where the models show poor performance example potraits and religious painting we can see that there is a significant overlap in the styles, confusing the model. 
 
 ![Best](./images/best.png)
+
 *Best performing classes for genre classification*
 
 ![Worst](./images/worst.png)
+
 *Worst performing classes for genre classification*
 
 ### Unsupervised 
